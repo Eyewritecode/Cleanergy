@@ -21,13 +21,13 @@
         <h1 class="cover-heading">Web Billing.</h1>
         <p class="lead">Cleanergy is introducing a new way for generating electricity bills by involving you in the process. Participating customers receive a discount on their bills.</p>
         <p class="lead">
-          <a href="#" class="btn btn-lg btn-default">Get your Bill</a>
+          <button class="btn btn-lg btn-default" data-toggle="modal" data-target="#uploadModal">Get your Bill</button>
         </p>
       </div>
 
       <div class="mastfoot">
         <div class="inner">
-          <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+          <p>Copyright <%= Time.now.year %> <a href="#">Cleanergy</a>, by <a href="https://twitter.com/eyewritecode">Thibault</a>.</p>
         </div>
       </div>
 
@@ -36,4 +36,24 @@
  </div>
 
 </div>
+
+ <!-- Modal -->
+  <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 class="modal-title">Upload your meter number picture!</h4>
+        </div>
+        <div class="modal-body">
+         <%= render 'form' %>
+        </div>
+        <div class="modal-footer">
+        	<p align="center" style="color: red;">
+        		<span class="glyphicon glyphicon-warning-sign" aria-hidden='true'></span> Make sure the file is a .jpg or .png format.
+        	</p>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 
