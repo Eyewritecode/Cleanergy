@@ -12,6 +12,13 @@
               <li class="active"><a href="#">WeBill</a></li>
               <li><a href="#">How to</a></li>
               <li><a href="#">Contact</a></li>
+              <li>
+                  <% if user_signed_in? %>
+                    <%= link_to "Sign out", destroy_user_session_path, method: :delete%>
+                  <% else %>
+                    <%= link_to "Sign in", new_user_session_path %>
+                  <% end %>
+              </li>
             </ul>
           </nav>
         </div>
@@ -50,7 +57,7 @@
         </div>
         <div class="modal-footer">
         	<p align="center" style="color: red;">
-        		<span class="glyphicon glyphicon-warning-sign" aria-hidden='true'></span> Make sure the file is a .jpg or .png format.
+        		<span class="glyphicon glyphicon-warning-sign" aria-hidden='true'></span> Please make sure the file is a .jpg or .png format.
         	</p>
         </div>
       </div><!-- /.modal-content -->
