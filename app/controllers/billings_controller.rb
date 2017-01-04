@@ -2,6 +2,7 @@ class BillingsController < ApplicationController
   before_action :set_billing, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [ :create, :update, :destroy]
 
+
   # GET /billings
   # GET /billings.json
   def index
