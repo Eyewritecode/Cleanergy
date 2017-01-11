@@ -3,6 +3,10 @@ class BillingsController < ApplicationController
   before_action :authenticate_user!, only: [ :create, :update, :destroy]
 
 
+  def ocr
+     meter = RTesseract.new(@billing.pic.url())
+     @image = meter.to_s
+  end
   # GET /billings
   # GET /billings.json
   def index
@@ -71,6 +75,9 @@ class BillingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def billing_params
-      params.require(:billing).permit(:meter_number, :meter_image)
+      params.require(:billing).permit(:meter_number, :pic)
+    end
+    def picture_params
+      params.require(:billing).permit(:pic)
     end
 end

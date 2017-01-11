@@ -1,13 +1,12 @@
-<p id="notice"><%= notice %></p>
 
 <p>
   <strong>Meter number:</strong>
-  <%= @billing.meter_number %>
+  <%= @text %>
 </p>
 
 <p>
   <strong>Meter image:</strong>
-  <%= @billing.meter_image %>
+  <%= image_tag @billing.pic.url() %>
 </p>
 
 <%= link_to 'Edit', edit_billing_path(@billing) %> |
