@@ -1,7 +1,7 @@
 
 <p>
   <strong>Meter number:</strong>
-  <%= @text %>
+  <%= RTesseract.new("#{Rails.root}/public/uploads/#{@billing.class.to_s.underscore}/pic/#{@billing.id}/#{@billing.pic.file.filename}", lang: "eng").to_s %>
 </p>
 
 <p>

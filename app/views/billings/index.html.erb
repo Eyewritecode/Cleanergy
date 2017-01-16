@@ -16,7 +16,7 @@
   <tbody>
     <% @billings.each do |billing| %>
       <tr>
-        <td><%= billing.meter_number %></td>
+        <td><%= RTesseract.new("#{Rails.root}/public/uploads/#{billing.class.to_s.underscore}/pic/#{billing.id}/#{billing.pic.file.filename}", lang: "eng").to_s %></td>
         <td>
           <%= billing.pic
             #RTesseract.new("uploads/billing/pic/").to_s

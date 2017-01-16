@@ -2,11 +2,6 @@ class BillingsController < ApplicationController
   before_action :set_billing, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [ :create, :update, :destroy]
 
-
-  def ocr
-     meter = RTesseract.new(@billing.pic.url())
-     @image = meter.to_s
-  end
   # GET /billings
   # GET /billings.json
   def index
