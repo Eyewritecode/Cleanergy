@@ -4,6 +4,7 @@ class BillingsController < ApplicationController
 
   # GET /billings
   # GET /billings.json
+  
   def index
     @billings = Billing.all
   end
@@ -74,5 +75,8 @@ class BillingsController < ApplicationController
     end
     def picture_params
       params.require(:billing).permit(:pic)
+    end
+    def ocr
+      @ocr_text = RTesseract.new("#{Rails.root}/public/uploads/#{billing.class.to_s.underscore}/pic/#{billing.id}/#{billing.pic.file.filename}", lang: "eng").to_s
     end
 end

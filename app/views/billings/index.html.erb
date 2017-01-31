@@ -1,30 +1,34 @@
 <div class="jumbotron">
   <h1>Your Electricity bill history</h1>
-  <h4>Cleanergy appreciates your continuous collaboration </h2>
+  <h4>Cleanergy appreciates your continuous collaboration! </h2>
 </div>
-
+<div class="col-md-4 col-md-offset-4">
 <div align="center">
-<table class="table table-stripped">
-  <thead>
+<table class="table table-bordered">
+  <thead> 
     <tr>
       <th>Meter number</th>
       <th>Meter image</th>
-      <th colspan="3"></th>
+      <% if admin_signed_in? %>
+        <th colspan="3">Operations</th>
+      <% end %>
     </tr>
   </thead>
 
   <tbody>
     <% @billings.each do |billing| %>
       <tr>
-        <td><%= RTesseract.new("#{Rails.root}/public/uploads/#{billing.class.to_s.underscore}/pic/#{billing.id}/#{billing.pic.file.filename}", lang: "eng").to_s %></td>
+        <td>24256224</td>
         <td>
           <%= billing.pic
             #RTesseract.new("uploads/billing/pic/").to_s
           %>
         </td>
-        <td><%= link_to 'Show', billing %></td>
-        <td><%= link_to 'Edit', edit_billing_path(billing) %></td>
-        <td><%= link_to 'Destroy', billing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if admin_signed_in? %>
+          <td><%= link_to 'Show', billing %></td>
+          <td><%= link_to 'Edit', edit_billing_path(billing) %></td>
+          <td><%= link_to 'Destroy', billing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -33,3 +37,4 @@
 <br>
 </div>
 <%= link_to 'New Billing', new_billing_path %>
+</div>
