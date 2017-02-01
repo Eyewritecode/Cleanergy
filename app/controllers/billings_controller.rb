@@ -1,10 +1,10 @@
 class BillingsController < ApplicationController
   before_action :set_billing, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_admin!
+  #before_action :authenticate_admin!
 
   # GET /billings
   # GET /billings.json
-  @ocr_text=""
+  
   def index
     @billings = Billing.all
   end
