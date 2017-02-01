@@ -1,10 +1,10 @@
 class BillingsController < ApplicationController
   before_action :set_billing, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [ :create, :update, :destroy]
+  before_action :authenticate_admin!
 
   # GET /billings
   # GET /billings.json
-  
+  @ocr_text=""
   def index
     @billings = Billing.all
   end
@@ -27,9 +27,12 @@ class BillingsController < ApplicationController
   # POST /billings.json
   def create
     @billing = Billing.new(billing_params)
-
+    
     respond_to do |format|
       if @billing.save
+        get_name
+        @ocr_text = RTesseract.new("#{Rails.root}/public/uploads/billing/pic/#{@billing.id}/#{@test}", lang: "eng").to_s
+
         format.html { redirect_to @billing, notice: 'Billing was successfully created.' }
         format.json { render :show, status: :created, location: @billing }
       else
@@ -76,7 +79,7 @@ class BillingsController < ApplicationController
     def picture_params
       params.require(:billing).permit(:pic)
     end
-    def ocr
-      @ocr_text = RTesseract.new("#{Rails.root}/public/uploads/#{billing.class.to_s.underscore}/pic/#{billing.id}/#{billing.pic.file.filename}", lang: "eng").to_s
+    def get_name
+      @test = @billing.pic.filename
     end
 end

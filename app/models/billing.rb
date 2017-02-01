@@ -1,11 +1,6 @@
 class Billing < ActiveRecord::Base
+	validates_presence_of :pic
 	belongs_to :user
 	mount_uploader :pic, MeterpicUploader
-	#before_save :ocr
-
-
-  # def ocr
-  #   image = RTesseract.new(:)
-  #   @text = image.to_s
-  # end
+	
 end

@@ -1,13 +1,19 @@
+<div class="container">
+<div class="row">
+	<div class="col-md-4 col-md-offset-4">
+		<p>
+		  <strong>Meter number:</strong>
+		  <%= @ocr_text %>
+		</p>
+		
+		<p>
+		  <strong>Meter image:</strong>
+		  </p>
+		<div class="thumbnail">
+		  <%= image_tag @billing.pic.thumb.url() %>
+		</div>
+	<%= link_to 'Edit', edit_billing_path(@billing) %> |
+	<%= link_to 'Back', billings_path %>
+</div>
 
-<p>
-  <strong>Meter number:</strong>
-  29074292977
-</p>
-
-<p>
-  <strong>Meter image:</strong>
-  <%= image_tag @billing.pic.url() %>
-</p>
-
-<%= link_to 'Edit', edit_billing_path(@billing) %> |
-<%= link_to 'Back', billings_path %>
+</div>

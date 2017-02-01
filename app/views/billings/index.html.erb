@@ -18,7 +18,7 @@
   <tbody>
     <% @billings.each do |billing| %>
       <tr>
-        <td>24256224</td>
+        <td><%= @ocr_text %></td>
         <td>
           <%= billing.pic
             #RTesseract.new("uploads/billing/pic/").to_s
