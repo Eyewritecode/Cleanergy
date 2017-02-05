@@ -1,6 +1,6 @@
 class BillingsController < ApplicationController
   before_action :set_billing, only: [:show, :edit, :update, :destroy]
-  #before_action :authenticate_admin!
+  before_action :authenticate_user!, except: [:new]
 
   # GET /billings
   # GET /billings.json
@@ -30,9 +30,6 @@ class BillingsController < ApplicationController
     
     respond_to do |format|
       if @billing.save
-        get_name
-        @ocr_text = RTesseract.new("#{Rails.root}/public/uploads/billing/pic/#{@billing.id}/#{@test}", lang: "eng").to_s
-
         format.html { redirect_to @billing, notice: 'Billing was successfully created.' }
         format.json { render :show, status: :created, location: @billing }
       else
@@ -74,12 +71,9 @@ class BillingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def billing_params
-      params.require(:billing).permit(:meter_number, :pic)
+      params.require(:billing).permit(:pic)
     end
     def picture_params
       params.require(:billing).permit(:pic)
-    end
-    def get_name
-      @test = @billing.pic.filename
     end
 end

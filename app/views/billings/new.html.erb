@@ -1,28 +1,4 @@
-<div class="site-wrapper">
-
- <div class="site-wrapper-inner">
-
-    <div class="cover-container">
-
-      <div class="masthead clearfix">
-        <div class="inner">
-          <h3 class="masthead-brand">Cleanergy</h3>
-          <nav>
-            <ul class="nav masthead-nav">
-              <li class="active"><a href="#">WeBill</a></li>
-              <li><a href="#">How to</a></li>
-              <li><a href="#">Contact</a></li>
-              <li>
-                  <% if user_signed_in? %>
-                    <%= link_to "Sign out", destroy_user_session_path, method: :delete%>
-                  <% else %>
-                    <%= link_to "Sign in", new_user_session_path %>
-                  <% end %>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
+<%= render "layouts/nav" %>
 
       <div class="inner cover">
         <h1 class="cover-heading">Web Billing.</h1>

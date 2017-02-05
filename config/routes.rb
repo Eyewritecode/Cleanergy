@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
   
+  get 'howto/contact'
+
+  get "pages/howto"
+  get "pages/contact"
+  
+  resources :payments
   devise_for :admins
   devise_for :users
   resources :billings
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -14,13 +14,12 @@
       <% end %>
     </tr>
   </thead>
-
   <tbody>
     <% @billings.each do |billing| %>
       <tr>
-        <td><%= @ocr_text %></td>
+        <td><%= billing.meter_number %></td>
         <td>
-          <%= billing.pic
+          <%= image_tag billing.pic.thumb.url() #billing.pic
             #RTesseract.new("uploads/billing/pic/").to_s
           %>
         </td>
