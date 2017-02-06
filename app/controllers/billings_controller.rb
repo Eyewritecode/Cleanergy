@@ -27,7 +27,7 @@ class BillingsController < ApplicationController
   # POST /billings.json
   def create
     @billing = Billing.new(billing_params)
-    
+    @billing.user_id = current_user.id
     respond_to do |format|
       if @billing.save
         format.html { redirect_to @billing, notice: 'Billing was successfully created.' }
