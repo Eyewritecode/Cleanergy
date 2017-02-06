@@ -16,19 +16,21 @@
   </thead>
   <tbody>
     <% @billings.each do |billing| %>
-      <tr>
-        <td><%= billing.meter_number %></td>
-        <td>
-          <%= image_tag billing.pic.thumb.url() #billing.pic
-            #RTesseract.new("uploads/billing/pic/").to_s
-          %>
-        </td>
-        <% if admin_signed_in? %>
-          <td><%= link_to 'Show', billing %></td>
-          <td><%= link_to 'Edit', edit_billing_path(billing) %></td>
-          <td><%= link_to 'Destroy', billing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <% end %>
-      </tr>
+      <% if billing.user_id == current_user.id %>
+        <tr>
+          <td><%= billing.meter_number %></td>
+          <td>
+            <%= image_tag billing.pic.thumb.url() #billing.pic
+              #RTesseract.new("uploads/billing/pic/").to_s
+            %>
+          </td>
+      <%end%>
+          <% if admin_signed_in? %>
+            <td><%= link_to 'Show', billing %></td>
+            <td><%= link_to 'Edit', edit_billing_path(billing) %></td>
+            <td><%= link_to 'Destroy', billing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+        </tr>
     <% end %>
   </tbody>
 </table>

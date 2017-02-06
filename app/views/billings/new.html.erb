@@ -5,7 +5,7 @@
         <p class="lead">Cleanergy is introducing a new way for generating electricity bills by involving you in the process. Participating customers receive a discount on their bills.</p>
         <p class="lead">
         <% if admin_signed_in? %>
-          <%= link_to "<button class='btn btn-lg btn-default'>See my Bill</button>".html_safe, billings_path %>
+          <%= link_to "<button class='btn btn-lg btn-default'>Manage all Bills</button>".html_safe, billings_path %>
         <%elsif user_signed_in? %>
           <button class="btn btn-lg btn-default" data-toggle="modal" data-target="#uploadModal">Pay my Bill</button>
           <%= link_to "<button class='btn btn-lg btn-default'>See my Bill</button>".html_safe, billings_path %>
