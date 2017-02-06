@@ -4,7 +4,6 @@ class BillingsController < ApplicationController
 
   # GET /billings
   # GET /billings.json
-  
   def index
     @billings = Billing.all
   end
@@ -28,6 +27,7 @@ class BillingsController < ApplicationController
   def create
     @billing = Billing.new(billing_params)
     @billing.user_id = current_user.id
+
     respond_to do |format|
       if @billing.save
         format.html { redirect_to @billing, notice: 'Billing was successfully created.' }
@@ -62,7 +62,7 @@ class BillingsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_billing
@@ -76,8 +76,8 @@ class BillingsController < ApplicationController
     def picture_params
       params.require(:billing).permit(:pic)
     end
-    def get_last_meter
-      past_bill = Billing.where("user_id = #{current_user.id}").last
-      @lastMtrNbr = past_bill.meter_number
-    end
+    # def get_last_meter
+    #   past_bill = Billing.where("user_id = #{current_user.id}").last
+    #   @lastMtrNbr = past_bill.meter_number
+    # end
 end

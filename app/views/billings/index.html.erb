@@ -24,7 +24,7 @@
             <%= image_tag billing.pic.thumb.url() #billing.pic
               #RTesseract.new("uploads/billing/pic/").to_s
             %>
-            <td><%=@payment%></td>
+            <td><%=billing.payment %></td>
           </td>
       <%end%>
           <% if admin_signed_in? %>
