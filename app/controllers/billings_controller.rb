@@ -76,4 +76,8 @@ class BillingsController < ApplicationController
     def picture_params
       params.require(:billing).permit(:pic)
     end
+    def get_last_meter
+      past_bill = Billing.where("user_id = #{current_user.id}").last
+      @lastMtrNbr = past_bill.meter_number
+    end
 end

@@ -9,6 +9,7 @@
     <tr>
       <th>Meter number</th>
       <th>Meter image</th>
+      <th>Payment</th>
       <% if admin_signed_in? %>
         <th colspan="3">Operations</th>
       <% end %>
@@ -18,11 +19,12 @@
     <% @billings.each do |billing| %>
       <% if billing.user_id == current_user.id %>
         <tr>
-          <td><%= billing.meter_number %></td>
+          <td><%= "#{billing.meter_number} kW"%></td>
           <td>
             <%= image_tag billing.pic.thumb.url() #billing.pic
               #RTesseract.new("uploads/billing/pic/").to_s
             %>
+            <td><%=@payment%></td>
           </td>
       <%end%>
           <% if admin_signed_in? %>
