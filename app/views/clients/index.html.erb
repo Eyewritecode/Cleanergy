@@ -15,13 +15,13 @@
     </tr>
   </thead>
   <tbody>
-    <% @users.each do |user| %>
+    <% @clients.each do |client| %>
       <tr>
-        <td><%= user.id %></td>
-        <td><%= user.email %></td>
-        <td><%= user.sign_in_count %></td>
-        <td><%= user.last_sign_in_at %></td>
-        <td><a href="#"> Delete </a></td>
+        <td><%= client.id %></td>
+        <td><%= client.email %></td>
+        <td><%= client.sign_in_count %></td>
+        <td><%= client.last_sign_in_at %></td>
+        <td><%= link_to 'Destroy', admin_destroy_user_path(client), method: :delete, data: { confirm: 'Are you sure?' } %></td></td>
         <td><a href="#"> Edit </a></td>
       </tr>
     <%end%>

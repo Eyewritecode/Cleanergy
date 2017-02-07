@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
   
-  get 'users/index'
-
+  
   get 'howto/contact'
 
   get "pages/howto"
   get "pages/contact"
   
-  resources :payments
   devise_for :admins
   devise_for :users
   resources :billings
+
+  get 'clients' => 'clients#index'
+  match 'users/:id' => 'clients#destroy', :via => :delete, :as => :admin_destroy_user
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
