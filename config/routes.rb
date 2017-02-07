@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'users/index'
+
   get 'howto/contact'
 
   get "pages/howto"

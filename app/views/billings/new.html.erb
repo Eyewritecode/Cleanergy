@@ -6,6 +6,7 @@
         <p class="lead">
         <% if admin_signed_in? %>
           <%= link_to "<button class='btn btn-lg btn-default'>Manage all Bills</button>".html_safe, billings_path %>
+          <%= link_to "<button class='btn btn-lg btn-default'>Manage all Users</button>".html_safe, users_index_path %>
         <%elsif user_signed_in? %>
           <button class="btn btn-lg btn-default" data-toggle="modal" data-target="#uploadModal">Pay my Bill</button>
           <%= link_to "<button class='btn btn-lg btn-default'>See my Bill</button>".html_safe, billings_path %>
