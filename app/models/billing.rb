@@ -5,7 +5,6 @@ class Billing < ActiveRecord::Base
 	mount_uploader :pic, MeterpicUploader
 	after_save :old_bill, :getters
   #before_save :get_previous_value
-
   private
     def old_bill
       @last_value = self.payment.to_i 

@@ -5,7 +5,7 @@ class BillingsController < ApplicationController
   # GET /billings
   # GET /billings.json
   def index
-    @billings = Billing.all
+    @billings = Billing.all.paginate(page: params[:page], per_page: 5)
   end
 
   # GET /billings/1
