@@ -25,9 +25,10 @@ class BillingsController < ApplicationController
   # POST /billings
   # POST /billings.json
   def create
+
     @billing = Billing.new(billing_params)
     @billing.user_id = current_user.id
-
+    get_last_meter
     respond_to do |format|
       if @billing.save
         format.html { redirect_to @billing, notice: 'Billing was successfully created.' }
@@ -76,8 +77,8 @@ class BillingsController < ApplicationController
     def picture_params
       params.require(:billing).permit(:pic)
     end
-    # def get_last_meter
-    #   past_bill = Billing.where("user_id = #{current_user.id}").last
-    #   @lastMtrNbr = past_bill.meter_number
-    # end
+    def get_last_meter
+      past_bill = Billing.where(user_id: "#{current_user.id}").last
+      puts "************#{past_bill.meter_number}********"
+    end
 end

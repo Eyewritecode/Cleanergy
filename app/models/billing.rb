@@ -5,9 +5,9 @@ class Billing < ActiveRecord::Base
 	belongs_to :payment
 	mount_uploader :pic, MeterpicUploader
 	after_save :getters
-  before_save :get_previous_value
+  #before_save :get_previous_value
 
-	private
+	
 		def get_name
       billing = self.id
       @test = self.pic.filename
@@ -22,8 +22,8 @@ class Billing < ActiveRecord::Base
       # puts "**********************************************************"
       # self.update_column(:payment, lstNbr["meter_number"])
     end
-    def get_previous_value
-      values = Billing.where(user_id = self.user.id).last
-      puts " THE LAST WAS ************ #{values["id"]} **************"
+    def get_previous_value(user)
+      @values = Billing.where(user_id = user).last
+      puts " THE LAST WAS ************ #{@values["id"]} **************"
     end
 end
