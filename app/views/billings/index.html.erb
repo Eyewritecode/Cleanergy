@@ -16,8 +16,28 @@
     </tr>
   </thead>
   <tbody>
-    <% @billings.each do |billing| %>
-      <% if billing.user_id == current_user.id %>
+    <% unless user_signed? %>
+      <% @billings.each do |billing| %>
+        <% if billing.user_id == current_user.id %>
+          <tr>
+            <td><%= "#{billing.meter_number} kW"%></td>
+            <td>
+              <%= image_tag billing.pic.thumb.url() #billing.pic
+                #RTesseract.new("uploads/billing/pic/").to_s
+              %>
+              <td><%=billing.payment %></td>
+            </td>
+        <%end%>
+            <% if admin_signed_in? %>
+              <td><%= link_to 'Show', billing %></td>
+              <td><%= link_to 'Edit', edit_billing_path(billing) %></td>
+              <td><%= link_to 'Destroy', billing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <% end %>
+          </tr>
+      <% end %>
+    <%end%>
+    <%else%>
+      <% @billings.each do |billing| %>
         <tr>
           <td><%= "#{billing.meter_number} kW"%></td>
           <td>
@@ -26,14 +46,12 @@
             %>
             <td><%=billing.payment %></td>
           </td>
-      <%end%>
-          <% if admin_signed_in? %>
-            <td><%= link_to 'Show', billing %></td>
-            <td><%= link_to 'Edit', edit_billing_path(billing) %></td>
-            <td><%= link_to 'Destroy', billing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <% end %>
+          <td><%= link_to 'Show', billing %></td>
+          <td><%= link_to 'Edit', edit_billing_path(billing) %></td>
+          <td><%= link_to 'Destroy', billing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
-    <% end %>
+      <% end %>
+    <%end%>
   </tbody>
 </table>
 
