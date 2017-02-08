@@ -5,7 +5,7 @@ class BillingsController < ApplicationController
   # GET /billings
   # GET /billings.json
   def index
-    @billings = Billing.all.paginate(page: params[:page], per_page: 5).order("created_at ASC")
+    @billings = Billing.all.paginate(page: params[:page], per_page: 5).order("created_at DESC")
   end
 
   # GET /billings/1
@@ -28,10 +28,12 @@ class BillingsController < ApplicationController
     if user_signed_in?
       @billing = Billing.new(billing_params)
       @billing.user_id = current_user.id
-      @billing.payment = "#{get_last_meter}"
+      get_last_meter
+      @billing.payment = "#{@payment}"
     end
     respond_to do |format|
       if @billing.save
+        #system('curl -X POST -d "notification[phone]=mynumber" -d "notification[body]=mymessage" -d "notification[source_app]=myapp" http://localhost:3001/notifications')
         format.html { redirect_to @billing, notice: 'Billing was successfully created.' }
         format.json { render :show, status: :created, location: @billing }
       else
@@ -80,11 +82,12 @@ class BillingsController < ApplicationController
     end
     def get_last_meter
       past_bill = Billing.where(user_id: "#{current_user.id}").last
-      if past_bill.nil?
-        @payment = past_bill.meter_number
-      else
-        @payment = "0"
-      end
+      #if past_bill.nil?
+      @payment = past_bill.meter_number
+      # else
+      #   @payment = "0"
+      # end
+      puts "#{past_bill.meter_number} *****************"
       puts "******************#{@payment}"
     end
 end

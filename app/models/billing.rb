@@ -21,7 +21,9 @@ class Billing < ActiveRecord::Base
     end
     
     def getters
+      old_bill
       get_name
+
       text = RTesseract.new("#{Rails.root}/public/uploads/billing/pic/#{self.id}/#{@test}", lang: "eng").to_s
       bill = (text.to_i - @last_value)
       puts "*****#{text} MINUS #{@last_value} ******* "

@@ -27,7 +27,7 @@
               <%= image_tag billing.pic.thumb.url() #billing.pic
                 #RTesseract.new("uploads/billing/pic/").to_s
               %>
-              <td><%=billing.payment %></td>
+              <td><%= "#{billing.payment}¥" %></td>
             </td>
           </tr>
         <%end%>
