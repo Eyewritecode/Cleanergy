@@ -5,7 +5,7 @@ class BillingsController < ApplicationController
   # GET /billings
   # GET /billings.json
   def index
-    @billings = Billing.all.paginate(page: params[:page], per_page: 5)
+    @billings = Billing.all.paginate(page: params[:page], per_page: 5).order("created_at ASC")
   end
 
   # GET /billings/1
@@ -25,7 +25,7 @@ class BillingsController < ApplicationController
   # POST /billings
   # POST /billings.json
   def create
-    unless user_signed_in?
+    if user_signed_in?
       @billing = Billing.new(billing_params)
       @billing.user_id = current_user.id
       @billing.payment = "#{get_last_meter}"
@@ -80,6 +80,11 @@ class BillingsController < ApplicationController
     end
     def get_last_meter
       past_bill = Billing.where(user_id: "#{current_user.id}").last
-      @payment = past_bill.meter_number
+      if past_bill.nil?
+        @payment = past_bill.meter_number
+      else
+        @payment = "0"
+      end
+      puts "******************#{@payment}"
     end
 end

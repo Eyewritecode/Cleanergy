@@ -4,8 +4,13 @@ class Billing < ActiveRecord::Base
 	belongs_to :user
 	mount_uploader :pic, MeterpicUploader
 	after_save :old_bill, :getters
-  #before_save :get_previous_value
+  #before_create :imprevu
+  
   private
+    # def imprevu
+    #   if self.meter_number.nil?
+    #     self.update_column(:meter_number, "") 
+    # end
     def old_bill
       @last_value = self.payment.to_i 
     end
